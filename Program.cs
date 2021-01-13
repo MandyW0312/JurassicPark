@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace JurassicPark
 {
@@ -25,7 +26,29 @@ namespace JurassicPark
         }
         static void Main(string[] args)
         {
-            var dinosaurs = new List<Dinosaur>();
+            var dinosaurs = new List<Dinosaur>(){
+              new Dinosaur(){
+                  Name = "Natasha",
+                   DietType = "Herbivore",
+                   WhenAcquired = DateTime.Now,
+                   Weight = 14250,
+                   EnclosureNumber = 4,
+              },
+              new Dinosaur(){
+                    Name = "Loki",
+                   DietType = "Carnivore",
+                   WhenAcquired = DateTime.Now,
+                   Weight = 3000,
+                   EnclosureNumber = 75,
+              },
+              new Dinosaur(){
+                Name = "Jarvis",
+                   DietType = "Herbivore",
+                   WhenAcquired = DateTime.Now,
+                   Weight = 6850,
+                   EnclosureNumber = 83,
+              },
+            };
 
             // Welcome the user to the app
             BannerMessage("Welcome to Jurassic Park");
@@ -54,8 +77,11 @@ namespace JurassicPark
                 if (choice == "VIEW")
                 {
                     // Show all the dinosaurs in the list, ordered by WhenAcquired.
-                    foreach (var dinosaur in dinosaurs)
-                    { Console.WriteLine($"We acquired this dinosaur on {dinosaur.WhenAcquired}, their name is {dinosaur.Name} they are a {dinosaur.DietType} they weigh {dinosaur.Weight} pounds and they are in Enclosure Number {dinosaur.EnclosureNumber}"); }
+                    var dinosaursInOrder = dinosaurs.OrderBy(dinosaur => dinosaur.WhenAcquired);
+                    foreach (var dinosaur in dinosaursInOrder)
+                    {
+                        Console.WriteLine($"We acquired this dinosaur on {dinosaur.WhenAcquired}, their name is {dinosaur.Name} they are a {dinosaur.DietType} they weigh {dinosaur.Weight} pounds and they are in Enclosure Number {dinosaur.EnclosureNumber}.");
+                    }
                     // If no dinosaurs are in the park, "Print out" "There aren't any"
                     if (dinosaurs.Count == 0)
                     {
@@ -81,6 +107,7 @@ namespace JurassicPark
                         DietType = newDinosaurDietType,
                         Weight = newDinosaurWeight,
                         EnclosureNumber = newDinosaurEnclosureNumber,
+                        WhenAcquired = DateTime.Now,
                     };
                     // Add the dinosaur to the list
                     dinosaurs.Add(newDinosaur);
@@ -110,7 +137,12 @@ namespace JurassicPark
                     var newEnclosureNumber = int.Parse(Console.ReadLine());
                     foundDinosaur.EnclosureNumber = newEnclosureNumber;
                 }
-                // If Summary: Display the number of Carnivores and number of Herbivores  
+                // If Summary:  
+                if (choice == "SUMMARY")
+                {
+                    // Display the number of Carnivores and number of Herbivores
+
+                }
 
                 // If Quit: Stop the Program
                 // --- If the user's choice is QUIT
