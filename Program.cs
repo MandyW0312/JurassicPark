@@ -4,9 +4,21 @@ namespace JurassicPark
 {
     class Program
     {
+
+        static void BannerMessage(string message)
+        {
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine(message);
+            Console.WriteLine();
+            Console.WriteLine();
+        }
         static void Main(string[] args)
         {
             // Welcome the user to the app
+            BannerMessage("Welcome to Jurassic Park");
+
+
 
             // While the user hasn't chosen to Quit:
             // Display to them the menu Options:
@@ -26,6 +38,8 @@ namespace JurassicPark
             // Quit: Stop the Program
 
             // Say Goodbye
+            BannerMessage("Thank you for visiting, Please come again.");
+
         }
     }
 }
