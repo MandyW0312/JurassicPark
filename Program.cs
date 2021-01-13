@@ -141,7 +141,11 @@ namespace JurassicPark
                 if (choice == "SUMMARY")
                 {
                     // Display the number of Carnivores and number of Herbivores
-
+                    var numberOfCarnivores = dinosaurs.Count(dinosaur => dinosaur.DietType == "Carnivore");
+                    Console.WriteLine($"We have a total of {numberOfCarnivores} Carnivores in our Park");
+                    // Display the number of Herbivores
+                    var numberOfHerbivores = dinosaurs.Count(dinosaur => dinosaur.DietType == "Herbivore");
+                    Console.WriteLine($"We have a total of {numberOfHerbivores} Herbivores in our Park");
                 }
 
                 // If Quit: Stop the Program
