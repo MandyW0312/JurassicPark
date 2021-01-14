@@ -50,21 +50,21 @@ namespace JurassicPark
               new Dinosaur(){
                   Name = "Natasha",
                    DietType = "Herbivore",
-                   WhenAcquired = DateTime.Now,
+                   WhenAcquired = DateTime.Today,
                    Weight = 14250,
                    EnclosureNumber = 4,
               },
               new Dinosaur(){
                     Name = "Loki",
                    DietType = "Carnivore",
-                   WhenAcquired = DateTime.Now,
+                   WhenAcquired = DateTime.Today,
                    Weight = 3000,
                    EnclosureNumber = 75,
               },
               new Dinosaur(){
                 Name = "Jarvis",
                    DietType = "Herbivore",
-                   WhenAcquired = DateTime.Now,
+                   WhenAcquired = DateTime.Today,
                    Weight = 6850,
                    EnclosureNumber = 83,
               },
@@ -77,7 +77,9 @@ namespace JurassicPark
             {
                 Console.WriteLine();
                 Console.WriteLine("Menu: ");
-                Console.WriteLine("VIEW: To View a list of our dinosaurs ");
+                Console.WriteLine("VIEW ALL: To View a list of our dinosaurs ");
+                Console.WriteLine("VIEW BY DATE: To View a list of our dinosaurs that were acquired after a date you choose ");
+                Console.WriteLine("VIEW BY ENCLOSURE: This allows you to View a list of our dinosaurs by their Enclosure Number ");
                 Console.WriteLine("ADD: To Add a new dinosaur to our list ");
                 Console.WriteLine("REMOVE: To Delete a dinosaur from our list ");
                 Console.WriteLine("TRANSFER: To Update the Enclosure Info for one of our current dinosaurs ");
@@ -102,6 +104,27 @@ namespace JurassicPark
                     }
                 }
 
+                if (choice == "VIEW BY DATE")
+                {
+                    var dateForSearch = DateTime.Parse(PromptForString("What date would you like to search for in our list? "));
+                    var searchDate = dinosaurs.Where(dinosaur => dinosaur.WhenAcquired >= dateForSearch);
+                    foreach (var dinosaur in searchDate)
+                    {
+                        Console.WriteLine($"The Dinosaurs acquired after {dateForSearch} is {dinosaur.Name}");
+                    }
+
+                }
+
+                if (choice == "VIEW BY ENCLOSURE")
+                {
+                    var enclosureNumberForSearch = PromptForInteger("What Enclosure Number would you like to search for in out list? ");
+                    var foundDinosaur = dinosaurs.Where(dinosaur => dinosaur.EnclosureNumber == enclosureNumberForSearch);
+                    foreach (var dinosaur in foundDinosaur)
+                    {
+                        Console.WriteLine($"The Dinosaurs listed in the Enclosure Number {enclosureNumberForSearch} are {dinosaur.Name}");
+                    }
+                }
+
                 if (choice == "ADD")
                 {
 
@@ -117,7 +140,7 @@ namespace JurassicPark
                         DietType = newDinosaurDietType,
                         Weight = newDinosaurWeight,
                         EnclosureNumber = newDinosaurEnclosureNumber,
-                        WhenAcquired = DateTime.Now,
+                        WhenAcquired = DateTime.Today,
                     };
                     dinosaurs.Add(newDinosaur);
                 }
