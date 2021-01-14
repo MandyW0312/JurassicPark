@@ -154,7 +154,6 @@ namespace JurassicPark
                 if (choice == "TRANSFER")
                 {
                     var foundDinosaur = PromptAndFindDinosaur(dinosaurs);
-                    dinosaurs.Remove(foundDinosaur);
                     Console.Write("What Enclosure Number would you like to Transfer the Dinosaur to? ");
 
                     var newEnclosureNumber = int.Parse(Console.ReadLine());
